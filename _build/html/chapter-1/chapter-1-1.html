@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1.1 Example: Polynomial Curve Fitting &mdash; Notes for Pattern Recognition and Machine Learning 0.1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="1 Introduction" href="chapter-1.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Notes for Pattern Recognition and Machine Learning
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="chapter-1.html">1 Introduction</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1.1 Example: Polynomial Curve Fitting</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Notes for Pattern Recognition and Machine Learning</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="chapter-1.html">1 Introduction</a> &raquo;</li>
+      <li>1.1 Example: Polynomial Curve Fitting</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/chapter-1/chapter-1-1.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="example-polynomial-curve-fitting">
+<h1>1.1 Example: Polynomial Curve Fitting<a class="headerlink" href="#example-polynomial-curve-fitting" title="Permalink to this headline"></a></h1>
+<p>Suppose we observe a real-valued target variable <span class="math notranslate nohighlight">\(x\)</span> and we wish to use this observation to predict the value of a real-valued target variable <span class="math notranslate nohighlight">\(t\)</span>. We generate synthetic data from the function <span class="math notranslate nohighlight">\(\sin(2 \pi x)\)</span> with random noise included in the target values. In real data sets, the noise may arise from intrinsically stochastic processes such as radioactive decay but more typically is due to there being sources of variability that are themselves unobserved.</p>
+<p>Now suppose that we are given a training set comprising <span class="math notranslate nohighlight">\(N\)</span> observations of <span class="math notranslate nohighlight">\(x\)</span>, written <span class="math notranslate nohighlight">\(\mathbf{x} \equiv (x_1, \dots, x_N)^\top\)</span>, together with corresponding observations of the values of <span class="math notranslate nohighlight">\(t\)</span>, denoted <span class="math notranslate nohighlight">\(\mathbf{t} = (t_1, \dots, t_N)\)</span>.</p>
+<p>Consider a simple approach based on curve fitting. We fit the data using a polynomial function of the form</p>
+<div class="math notranslate nohighlight">
+\[y(x, \mathbf{w}) = \sum_{j=0}^M w_jx^j\]</div>
+<p>Functions, such as the polynomial, which are linear in the unknown parameters are called <em>linear models</em>. We minimize the error between the function <span class="math notranslate nohighlight">\(y(x, \mathbf{w})\)</span> and the training data:</p>
+<div class="math notranslate nohighlight">
+\[E(\mathbf{w}) = \frac{1}{2} \sum_{n=1}^N \{ y(x_n, \mathbf{w}) - t_n \}^2\]</div>
+<p>Since the <span class="math notranslate nohighlight">\(E(\mathbf{w})\)</span> is a quadratic function of the coefficients <span class="math notranslate nohighlight">\(\mathbf{w}\)</span>, we can find the closed form solution of <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> that minimizes <span class="math notranslate nohighlight">\(E(\mathbf{w})\)</span>. There remains the problem of choosing the order <span class="math notranslate nohighlight">\(M\)</span> of the polynomial and this is an example of <em>model comparison</em> or <em>model selection</em>. The figure below shows four examples of fitting polynomials with <span class="math notranslate nohighlight">\(M = 0, 1, 3, 9\)</span> to the data set. We notice that <span class="math notranslate nohighlight">\(M=0, 1\)</span> give rather poor fits to the data and consequently rather poor representations of the underlying function <span class="math notranslate nohighlight">\(\sin(2\pi x)\)</span>, while <span class="math notranslate nohighlight">\(M=9\)</span> obtain an excellent fit but oscillates wildly. The latter behaviour is known as <em>over-fitting</em>.</p>
+<a class="reference internal image-reference" href="../_images/fig-1-1-1.png"><img alt="../_images/fig-1-1-1.png" src="../_images/fig-1-1-1.png" style="height: 280pt;" /></a>
+<p>We shall evaluate <span class="math notranslate nohighlight">\(\mathbf{w}^*\)</span> on a test data set from the same underlying distribution. It is sometimes more convenient to use the root-mean-square (RMS) error defined by</p>
+<div class="math notranslate nohighlight">
+\[E_\text{RMS} = \sqrt{2E(\mathbf{w}^*)/N}\]</div>
+<p>Graphs of the training data and test set RMS errors are shown for various values of <span class="math notranslate nohighlight">\(M\)</span> in the figure below.</p>
+<a class="reference internal image-reference" href="../_images/fig-1-1-2.png"><img alt="../_images/fig-1-1-2.png" src="../_images/fig-1-1-2.png" style="height: 160pt;" /></a>
+<p>One technique that is often used to control the over-fitting phenomenon in such cases is that of <em>regularization</em>, which involves adding a penalty term to the error function in order to discourage the coefficients from reaching large values</p>
+<div class="math notranslate nohighlight">
+\[\tilde{E}(\mathbf{w}) = \frac{1}{2} \sum_{n=1}^N \{ y(x_n, \mathbf{w}) - t_n \}^2 + \frac{\lambda}{2} \lVert \mathbf{w} \rVert_2^2\]</div>
+<p>Note that the coefficient <span class="math notranslate nohighlight">\(w_0\)</span> is omitted from the regularizer because its inclusion causes the results to depend on the choice of origin for the target variable, or it may be included but with its own regularization coefficient. Techniques such as this are known as <em>shrinkage</em> methods because they reduce the value of the coefficients. The particular case of a quadratic regularizer is called <em>ridge regression</em> and in neural networks, this is known as <em>weight decay</em>.</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="chapter-1.html" class="btn btn-neutral float-left" title="1 Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Wufei Ma.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
