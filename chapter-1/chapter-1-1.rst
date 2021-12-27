@@ -39,4 +39,7 @@ One technique that is often used to control the over-fitting phenomenon in such 
 
    \tilde{E}(\mathbf{w}) = \frac{1}{2} \sum_{n=1}^N \{ y(x_n, \mathbf{w}) - t_n \}^2 + \frac{\lambda}{2} \lVert \mathbf{w} \rVert_2^2
 
-Note that the coefficient :math:`w_0` is omitted from the regularizer because its inclusion causes the results to depend on the choice of origin for the target variable, or it may be included but with its own regularization coefficient. Techniques such as this are known as *shrinkage* methods because they reduce the value of the coefficients. The particular case of a quadratic regularizer is called *ridge regression* and in neural networks, this is known as *weight decay*.
+Note that the coefficient :math:`w_0` is omitted from the regularizer because its inclusion causes the results to depend on the choice of origin for the target variable, or it may be included but with its own regularization coefficient. Techniques such as this are known as *shrinkage* methods because they reduce the value of the coefficients. The particular case of a quadratic regularizer is called *ridge regression* and in neural networks, this is known as *weight decay*. The figure below shows the impact of the regularization term on the generalization error.
+
+.. image:: figures/fig-1-1-3.png
+   :height: 160pt

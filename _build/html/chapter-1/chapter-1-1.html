@@ -89,7 +89,8 @@
 <p>One technique that is often used to control the over-fitting phenomenon in such cases is that of <em>regularization</em>, which involves adding a penalty term to the error function in order to discourage the coefficients from reaching large values</p>
 <div class="math notranslate nohighlight">
 \[\tilde{E}(\mathbf{w}) = \frac{1}{2} \sum_{n=1}^N \{ y(x_n, \mathbf{w}) - t_n \}^2 + \frac{\lambda}{2} \lVert \mathbf{w} \rVert_2^2\]</div>
-<p>Note that the coefficient <span class="math notranslate nohighlight">\(w_0\)</span> is omitted from the regularizer because its inclusion causes the results to depend on the choice of origin for the target variable, or it may be included but with its own regularization coefficient. Techniques such as this are known as <em>shrinkage</em> methods because they reduce the value of the coefficients. The particular case of a quadratic regularizer is called <em>ridge regression</em> and in neural networks, this is known as <em>weight decay</em>.</p>
+<p>Note that the coefficient <span class="math notranslate nohighlight">\(w_0\)</span> is omitted from the regularizer because its inclusion causes the results to depend on the choice of origin for the target variable, or it may be included but with its own regularization coefficient. Techniques such as this are known as <em>shrinkage</em> methods because they reduce the value of the coefficients. The particular case of a quadratic regularizer is called <em>ridge regression</em> and in neural networks, this is known as <em>weight decay</em>. The figure below shows the impact of the regularization term on the generalization error.</p>
+<a class="reference internal image-reference" href="../_images/fig-1-1-3.png"><img alt="../_images/fig-1-1-3.png" src="../_images/fig-1-1-3.png" style="height: 160pt;" /></a>
 </section>
 
 

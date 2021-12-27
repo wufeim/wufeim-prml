@@ -2,7 +2,7 @@ Notes for Pattern Recognition and Machine Learning
 *************************************
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    chapter-1/chapter-1
    chapter-2/chapter-2
